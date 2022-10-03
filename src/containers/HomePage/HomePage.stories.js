@@ -6,5 +6,7 @@ export default {
 }
 
 export const Default = () => (
-    <HomePage onSubmit={(data) => alert("submit: " + JSON.stringify(data))} />
+    <HomePage
+        onSubmit={(data) => alert("submit: " + JSON.stringify(data, null, 3))}
+    />
 )

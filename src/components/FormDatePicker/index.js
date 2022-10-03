@@ -12,9 +12,13 @@ const FormDatePicker = ({ name, control, rules, label }) => {
                 <DatePicker
                     {...field}
                     label={label}
-                    renderInput={(params) => <TextField {...params} />}
-                    error={!!fieldState.error}
-                    helperText={fieldState.error?.message}
+                    renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            error={!!fieldState.error}
+                            helperText={fieldState.error?.message}
+                        />
+                    )}
                 />
             )}
         />
