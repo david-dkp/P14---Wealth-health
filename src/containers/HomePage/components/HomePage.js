@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form"
 import states from "assets/states"
 import departments from "assets/departments"
 
-const HomePage = ({ onSubmit = () => {} }) => {
+const HomePage = ({ onSubmit = () => {}, loading }) => {
     const { control, handleSubmit } = useForm()
 
     return (
@@ -157,7 +157,12 @@ const HomePage = ({ onSubmit = () => {} }) => {
                                     label: department.name,
                                 }))}
                             />
-                            <Button fullWidth variant="contained" type="submit">
+                            <Button
+                                disabled={loading}
+                                fullWidth
+                                variant="contained"
+                                type="submit"
+                            >
                                 Save
                             </Button>
                         </Stack>

@@ -13,6 +13,7 @@ export const Dialog = ({
     showClose,
     fadeDuration,
     fadeDelay,
+    modalClass,
     ...otherProps
 }) => {
     useEffect(() => {
@@ -49,6 +50,7 @@ export const Dialog = ({
                 onClick={(e) => {
                     e.stopPropagation()
                 }}
+                modalClass={modalClass}
             >
                 {title && <TitleContainer>{title}</TitleContainer>}
                 <Content>{children}</Content>
@@ -70,6 +72,7 @@ Dialog.propTypes = {
     showClose: PropTypes.bool,
     fadeDuration: PropTypes.number,
     fadeDelay: PropTypes.number,
+    modalClass: PropTypes.string,
 }
 
 Dialog.defaultProps = {

@@ -6,12 +6,15 @@ import HomePageComponent from "./components/HomePage"
 const HomePage = () => {
     const { addEmployee } = useEmployees()
     const [open, setOpen] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const onSubmit = useCallback(
         (data) => {
-            // console.log("submit: " + JSON.stringify(data, null, 3))
-            // addEmployee(data).then(() => alert("added employee"))
-            setOpen(true)
+            setLoading(true)
+            addEmployee(data).then(() => {
+                setOpen(true)
+                setLoading(false)
+            })
         },
         [addEmployee]
     )
@@ -19,10 +22,10 @@ const HomePage = () => {
     return (
         <>
             <Dialog open={open} onClose={() => setOpen(false)}>
-                testing here content
+                Employee Created!
             </Dialog>
 
-            <HomePageComponent onSubmit={onSubmit} />
+            <HomePageComponent onSubmit={onSubmit} loading={loading} />
         </>
     )
 }
