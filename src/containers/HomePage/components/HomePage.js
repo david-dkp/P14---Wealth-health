@@ -22,8 +22,8 @@ const HomePage = ({ onSubmit = () => {} }) => {
     return (
         <Stack>
             <Navbar title="HRnet" />
-            <Stack spacing={2} alignItems="center">
-                <Link>
+            <Stack spacing={2} alignItems="center" width={"100%"}>
+                <Link href="/employees">
                     <Typography>View Current Employees</Typography>
                 </Link>
                 <Typography variant="h5" fontWeight={"bold"}>
@@ -31,7 +31,13 @@ const HomePage = ({ onSubmit = () => {} }) => {
                 </Typography>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <FormControl>
-                        <Stack spacing={3} alignItems={"start"} width={300}>
+                        <Stack
+                            spacing={3}
+                            alignItems={"start"}
+                            sx={{
+                                width: ["100%", "400px"],
+                            }}
+                        >
                             <FormTextField
                                 name="firstName"
                                 control={control}
@@ -91,7 +97,7 @@ const HomePage = ({ onSubmit = () => {} }) => {
                                     Address
                                 </Typography>
                                 <Stack
-                                    sx={{ marginTop: 1 }}
+                                    sx={{ marginTop: 1, width: "100%" }}
                                     spacing={2}
                                     alignItems="start"
                                 >
