@@ -7,6 +7,7 @@ const FormTextField = ({ name, control, rules, label, type }) => {
             name={name}
             control={control}
             rules={rules}
+            defaultValue=""
             render={({ field, fieldState }) => (
                 <TextField
                     label={label}

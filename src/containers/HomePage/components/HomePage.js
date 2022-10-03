@@ -22,7 +22,7 @@ const HomePage = ({ onSubmit = () => {} }) => {
     return (
         <Stack>
             <Navbar title="HRnet" />
-            <Stack spacing={2} alignItems="center" width={"100%"}>
+            <Stack pb={3} spacing={2} alignItems="center" width={"100%"}>
                 <Link href="/employees">
                     <Typography>View Current Employees</Typography>
                 </Link>
@@ -153,7 +153,7 @@ const HomePage = ({ onSubmit = () => {} }) => {
                                     required: "Department is required",
                                 }}
                                 options={departments.map((department) => ({
-                                    value: department.id,
+                                    value: department.name,
                                     label: department.name,
                                 }))}
                             />

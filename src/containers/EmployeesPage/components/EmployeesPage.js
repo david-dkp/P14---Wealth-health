@@ -24,14 +24,14 @@ const columns = [
     { field: "zipCode", headerName: "Zip Code" },
 ]
 
-const EmployeesPage = ({ employees }) => {
+const EmployeesPage = ({ employees, loading }) => {
     const [currentPage, setCurrentPage] = useState(0)
     const [pageSize, setPageSize] = useState(5)
 
     return (
         <Stack>
             <Navbar title={"Current Employees"} />
-            <Stack sx={{ minHeight: 300, width: "100%" }}>
+            <Stack sx={{ minHeight: 300, width: "100%", padding: [2, 5] }}>
                 <Stack direction={"row"} alignItems="center" spacing={1}>
                     <Typography variant={"body1"} fontWeight={"bold"}>
                         Show
@@ -98,6 +98,7 @@ const EmployeesPage = ({ employees }) => {
                     disableColumnSelector
                     disableDensitySelector
                     disableColumnMenu
+                    loading={loading}
                 />
                 <Typography sx={{ marginTop: 1 }} textAlign="center">
                     {

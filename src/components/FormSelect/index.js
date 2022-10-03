@@ -13,6 +13,7 @@ const FormSelect = ({ name, control, rules, label, options }) => {
             name={name}
             control={control}
             rules={rules}
+            defaultValue={options[0].value}
             render={({ field, fieldState }) => (
                 <FormControl fullWidth error={!!fieldState.error}>
                     <InputLabel id={`${name}-label`}>{label}</InputLabel>
