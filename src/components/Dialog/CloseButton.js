@@ -29,7 +29,7 @@ const CloseButton = (props) => {
     )
 }
 
-const Container = styled.btn`
+const Container = styled.button`
     position: absolute;
     top: 0;
     right: 0;

@@ -11,6 +11,8 @@ export const Dialog = ({
     clickClose,
     escapeClose,
     showClose,
+    fadeDuration,
+    fadeDelay,
     ...otherProps
 }) => {
     useEffect(() => {
@@ -39,6 +41,8 @@ export const Dialog = ({
             aria-modal="true"
             aria-hidden={open ? "true" : "false"}
             role="dialog"
+            fadeDuration={fadeDuration}
+            fadeDelay={fadeDelay}
             {...otherProps}
         >
             <Modal
@@ -48,7 +52,9 @@ export const Dialog = ({
             >
                 {title && <TitleContainer>{title}</TitleContainer>}
                 <Content>{children}</Content>
-                {showClose && <CloseButton onClick={onClose} />}
+                {showClose && (
+                    <CloseButton onClick={onClose} aria-label="Close" />
+                )}
             </Modal>
         </Container>
     )
@@ -62,6 +68,8 @@ Dialog.propTypes = {
     clickClose: PropTypes.bool,
     escapeClose: PropTypes.bool,
     showClose: PropTypes.bool,
+    fadeDuration: PropTypes.number,
+    fadeDelay: PropTypes.number,
 }
 
 Dialog.defaultProps = {
@@ -69,9 +77,20 @@ Dialog.defaultProps = {
     clickClose: true,
     escapeClose: true,
     showClose: true,
+    fadeDuration: 0.3,
+    fadeDelay: 0,
 }
 
 const Container = styled.div`
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
     z-index: 1000;
     display: flex;
     padding: 2rem;
@@ -84,6 +103,9 @@ const Container = styled.div`
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
+
+    animation: fadeIn ${(props) => props.fadeDuration}s
+        ${(props) => props.fadeDelay}s ease-in-out;
 `
 
 const TitleContainer = styled.div`
