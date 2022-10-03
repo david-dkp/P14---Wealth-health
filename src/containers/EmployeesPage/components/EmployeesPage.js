@@ -1,6 +1,14 @@
 import Navbar from "components/Navbar"
-import { Box, Button, IconButton, Link, Stack, Typography } from "@mui/material"
-import { DataGrid } from "@mui/x-data-grid"
+import {
+    Button,
+    IconButton,
+    Link,
+    MenuItem,
+    Select,
+    Stack,
+    Typography,
+} from "@mui/material"
+import { DataGrid, GridToolbar } from "@mui/x-data-grid"
 import { useState } from "react"
 import { ArrowLeft, ArrowRight } from "@mui/icons-material"
 
@@ -24,7 +32,40 @@ const EmployeesPage = ({ employees }) => {
         <Stack>
             <Navbar title={"Current Employees"} />
             <Stack sx={{ minHeight: 300, width: "100%" }}>
+                <Stack direction={"row"} alignItems="center" spacing={1}>
+                    <Typography variant={"body1"} fontWeight={"bold"}>
+                        Show
+                    </Typography>
+                    <Select
+                        value={pageSize}
+                        onChange={(e) => setPageSize(e.target.value)}
+                        defaultValue={pageSize}
+                        sx={{
+                            padding: 0,
+                        }}
+                    >
+                        <MenuItem key={5} value={5}>
+                            5
+                        </MenuItem>
+                        <MenuItem key={10} value={10}>
+                            10
+                        </MenuItem>
+                        <MenuItem key={25} value={25}>
+                            25
+                        </MenuItem>
+                        <MenuItem key={50} value={50}>
+                            50
+                        </MenuItem>
+                        <MenuItem key={100} value={100}>
+                            100
+                        </MenuItem>
+                    </Select>
+                    <Typography variant={"body1"} fontWeight={"bold"}>
+                        entries
+                    </Typography>
+                </Stack>
                 <DataGrid
+                    sx={{ marginTop: 2 }}
                     rows={employees.map((employee) => ({
                         id: employee.id,
                         firstName: employee.firstName,
@@ -46,6 +87,17 @@ const EmployeesPage = ({ employees }) => {
                     onPageSizeChange={setPageSize}
                     onPageChange={setCurrentPage}
                     page={currentPage}
+                    components={{ Toolbar: GridToolbar }}
+                    componentsProps={{
+                        toolbar: {
+                            showQuickFilter: true,
+                            quickFilterProps: { debounceMs: 500 },
+                        },
+                    }}
+                    disableColumnFilter
+                    disableColumnSelector
+                    disableDensitySelector
+                    disableColumnMenu
                 />
                 <Typography sx={{ marginTop: 1 }} textAlign="center">
                     {
