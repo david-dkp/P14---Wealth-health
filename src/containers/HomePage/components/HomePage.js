@@ -14,6 +14,7 @@ import FormTextField from "components/FormTextField"
 import Navbar from "components/Navbar"
 import { useForm } from "react-hook-form"
 import states from "assets/states"
+import departments from "assets/departments"
 
 const HomePage = ({ onSubmit = () => {} }) => {
     const { control, handleSubmit } = useForm()
@@ -30,7 +31,7 @@ const HomePage = ({ onSubmit = () => {} }) => {
                 </Typography>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <FormControl>
-                        <Stack spacing={3}>
+                        <Stack spacing={3} alignItems={"start"} width={300}>
                             <FormTextField
                                 name="firstName"
                                 control={control}
@@ -67,11 +68,33 @@ const HomePage = ({ onSubmit = () => {} }) => {
                                     required: "Start Date is required",
                                 }}
                             />
-                            <FormGroup>
-                                <Typography variant="body1" fontWeight="bold">
+                            <Stack
+                                sx={{
+                                    padding: 2,
+                                    border: "1px solid",
+                                    position: "relative",
+                                    width: "100%",
+                                }}
+                            >
+                                <Typography
+                                    sx={{
+                                        position: "absolute",
+                                        top: 0,
+                                        left: 10,
+                                        backgroundColor: "white",
+                                        padding: 1,
+                                        transform: "translateY(-50%)",
+                                    }}
+                                    variant="body1"
+                                    fontWeight="bold"
+                                >
                                     Address
                                 </Typography>
-                                <Stack sx={{ marginTop: 1 }} spacing={2}>
+                                <Stack
+                                    sx={{ marginTop: 1 }}
+                                    spacing={2}
+                                    alignItems="start"
+                                >
                                     <FormTextField
                                         name="address.street"
                                         control={control}
@@ -115,8 +138,20 @@ const HomePage = ({ onSubmit = () => {} }) => {
                                         type="number"
                                     />
                                 </Stack>
-                            </FormGroup>
-                            <Button variant="contained" type="submit">
+                            </Stack>
+                            <FormSelect
+                                name="department"
+                                control={control}
+                                label="Department"
+                                rules={{
+                                    required: "Department is required",
+                                }}
+                                options={departments.map((department) => ({
+                                    value: department.id,
+                                    label: department.name,
+                                }))}
+                            />
+                            <Button fullWidth variant="contained" type="submit">
                                 Save
                             </Button>
                         </Stack>
