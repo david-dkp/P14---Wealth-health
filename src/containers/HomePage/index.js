@@ -1,6 +1,6 @@
-import { Dialog } from "components/Dialog"
 import useEmployees from "hooks/useEmployees"
 import { useCallback, useState } from "react"
+import { Dialog } from "dkp.david-react-dialog"
 import HomePageComponent from "./components/HomePage"
 
 const HomePage = () => {
