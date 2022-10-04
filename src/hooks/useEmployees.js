@@ -14,7 +14,7 @@ const useEmployees = () => {
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         getEmployees().then((employees) => {
-            if (employees.length === 0) {
+            if (!employees || employees.length === 0) {
                 const newEmployees = JSON.stringify(employeesData)
                 localStorage.setItem("employees", newEmployees)
                 setEmployees(newEmployees)
