@@ -1,5 +1,5 @@
 import EmployeesPage from "./components/EmployeesPage"
-import employees from "assets/employees"
+import employees from "../public/assets/employees"
 
 export default {
     title: "containers/EmployeesPage",

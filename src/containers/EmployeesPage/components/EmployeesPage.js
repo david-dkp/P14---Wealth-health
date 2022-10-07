@@ -9,7 +9,7 @@ import {
     Typography,
 } from "@mui/material"
 import { DataGrid, GridToolbar } from "@mui/x-data-grid"
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { ArrowLeft, ArrowRight } from "@mui/icons-material"
 
 const columns = [
@@ -27,6 +27,21 @@ const columns = [
 const EmployeesPage = ({ employees, loading }) => {
     const [currentPage, setCurrentPage] = useState(0)
     const [pageSize, setPageSize] = useState(5)
+
+    const rows = useMemo(() => {
+        return employees.map((employee) => ({
+            id: employee.id,
+            firstName: employee.firstName,
+            lastName: employee.lastName,
+            startDate: new Date(employee.startDate),
+            department: employee.department,
+            dateOfBirth: new Date(employee.dateOfBirth),
+            streetAddress: employee.address.street,
+            city: employee.address.city,
+            state: employee.address.state,
+            zipCode: employee.address.zip,
+        }))
+    }, [employees])
 
     return (
         <Stack>
@@ -66,18 +81,7 @@ const EmployeesPage = ({ employees, loading }) => {
                 </Stack>
                 <DataGrid
                     sx={{ marginTop: 2 }}
-                    rows={employees.map((employee) => ({
-                        id: employee.id,
-                        firstName: employee.firstName,
-                        lastName: employee.lastName,
-                        startDate: new Date(employee.startDate),
-                        department: employee.department,
-                        dateOfBirth: new Date(employee.dateOfBirth),
-                        streetAddress: employee.address.street,
-                        city: employee.address.city,
-                        state: employee.address.state,
-                        zipCode: employee.address.zip,
-                    }))}
+                    rows={rows}
                     columns={columns}
                     autoHeight
                     pageSize={pageSize}
@@ -124,6 +128,7 @@ const EmployeesPage = ({ employees, loading }) => {
                             }
                         }}
                         disabled={currentPage === 0}
+                        aria-label="previous page"
                     >
                         <ArrowLeft />
                     </IconButton>
@@ -157,6 +162,7 @@ const EmployeesPage = ({ employees, loading }) => {
                             currentPage >=
                             Math.ceil(employees.length / pageSize) - 1
                         }
+                        aria-label="next page"
                     >
                         <ArrowRight />
                     </IconButton>
