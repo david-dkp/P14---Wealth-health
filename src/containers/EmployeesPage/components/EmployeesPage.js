@@ -120,6 +120,7 @@ const EmployeesPage = ({ employees, loading }) => {
                     alignItems="center"
                     sx={{ marginTop: 3 }}
                     spacing={1}
+                    width={"100%"}
                 >
                     <IconButton
                         onClick={() => {
@@ -132,7 +133,13 @@ const EmployeesPage = ({ employees, loading }) => {
                     >
                         <ArrowLeft />
                     </IconButton>
-                    <Stack direction="row" spacing={1}>
+                    <Stack
+                        sx={{
+                            overflow: "scroll",
+                        }}
+                        direction="row"
+                        spacing={1}
+                    >
                         {Array.from(
                             Array(Math.ceil(employees.length / pageSize)).keys()
                         ).map((page) => (
@@ -168,7 +175,7 @@ const EmployeesPage = ({ employees, loading }) => {
                     </IconButton>
                 </Stack>
             </Stack>
-            <Stack sx={{ marginTop: 3 }} alignItems={"center"}>
+            <Stack sx={{ marginBlock: 2 }} alignItems={"center"}>
                 <Link href={"/"} textAlign={"center"}>
                     Home
                 </Link>
