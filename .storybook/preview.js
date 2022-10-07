@@ -1,6 +1,6 @@
 import { LocalizationProvider } from "@mui/x-date-pickers"
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment"
-import "../src/App.css"
+import "../src/index.css"
 
 export const parameters = {
     actions: { argTypesRegex: "^on[A-Z].*" },

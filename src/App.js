@@ -1,5 +1,3 @@
-import "./App.css"
-
 import { LocalizationProvider } from "@mui/x-date-pickers"
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
@@ -11,8 +9,12 @@ function App() {
         <LocalizationProvider dateAdapter={AdapterMoment}>
             <Router>
                 <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/employees" element={<EmployeesPage />} />
+                    <Route path="/" exact element={<HomePage />} />
+                    <Route
+                        path="/employees"
+                        exact
+                        element={<EmployeesPage />}
+                    />
                 </Routes>
             </Router>
         </LocalizationProvider>

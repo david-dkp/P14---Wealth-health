@@ -1,11 +1,11 @@
-const {
+import {
     MenuItem,
     Select,
     FormControl,
     InputLabel,
     FormHelperText,
-} = require("@mui/material")
-const { Controller } = require("react-hook-form")
+} from "@mui/material"
+import { Controller } from "react-hook-form"
 
 const FormSelect = ({ name, control, rules, label, options }) => {
     return (
